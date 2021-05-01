@@ -21,11 +21,11 @@ function setup() {
 
 	//write code to play fairyVoice sound
 	fairyVoice = loadSound("sound/JoyMusic.mp3");
-     fairy = createSprite(100, 600);
-	 fairy.addImage(fairyImg);
-	 fairy.scale= 0.3;
+     fairySound.play();
+	 
 	//create fairy sprite and add animation for fairy
-
+     fairy = createSprite(130, 520);
+	 fairy.addAnimation("fairy.png", fairyImg); 
 
 	star = createSprite(650,30);
 	star.addImage(starImg);
@@ -52,17 +52,25 @@ function draw() {
   console.log(star.y);
 
   //write code to stop star in the hand of fairy
-
+     
+     if(star.y > 470 && starBody.position.y > 470) {
+		 Matter.Body.setStatic(starBody, true);
+	 }
   drawSprites();
 
 }
 
 function keyPressed() {
-
+     
+	if(keyCode === RIGHT_ARROW){
+		fairy.x  = fairy.x + 20;
+	}
 	if (keyCode === DOWN_ARROW) {
 		Matter.Body.setStatic(starBody,false); 
 	}
 
 	//writw code to move fairy left and right
-	
+	if(star.y > 470 && starBody.position.y > 470 ){
+		matter.Body.setStatic (starBody, true);
+	}
 }
